@@ -1,6 +1,6 @@
 const App: React.FC = () => {
   return (
-    <div>
+    <div className="text-2xl">
       AI-based domain search
     </div>
   )
