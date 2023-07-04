@@ -1,5 +1,7 @@
+import { Router } from 'services/routing';
+
 const App: React.FC = () => {
-  return <div className="text-2xl">AI-based domain search</div>;
+  return <Router />;
 };
 
 export default App;
