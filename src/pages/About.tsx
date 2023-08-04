@@ -1,5 +1,12 @@
+import Header from './components/Header';
+
 const About: React.FC = () => {
-  return <div>About</div>;
+  return (
+    <div>
+      <Header active="about" />
+      About
+    </div>
+  );
 };
 
 export default About;
