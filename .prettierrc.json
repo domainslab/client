@@ -1,6 +1,7 @@
 {
   "$schema": "http://json.schemastore.org/prettierrc",
   "tabWidth": 2,
+  "printWidth": 80,
   "useTabs": false,
   "semi": true,
   "singleQuote": true,
@@ -10,5 +11,13 @@
   "bracketSpacing": true,
   "bracketSameLine": false,
   "arrowParens": "avoid",
-  "singleAttributePerLine": true
+  "singleAttributePerLine": true,
+  "overrides": [
+    {
+      "files": "*.html",
+      "options": {
+        "singleAttributePerLine": false
+      }
+    }
+  ]
 }
