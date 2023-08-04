@@ -7,11 +7,11 @@ const Colors: React.FC = () => {
       {Object.entries(ColorsLibrary).map(([colorName, colorCode], key) => (
         <div
           key={key}
-          className="flex"
+          className="flex gap-[50px]"
         >
           <div className="shrink-0 w-[150px]">{colorName}</div>
           <div
-            className="shrink-0 w-[200px]"
+            className="shrink-0 w-[250px]"
             style={{ color: colorCode }}
           >
             {colorCode}
