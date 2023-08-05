@@ -18,8 +18,8 @@ const DomainCardContainer: React.FC<DomainCardContainerProps> = ({
     axios.get(API, { params: { domain: title } })
       .then(res => setAvailable(res.data.isAvailable))
       .catch(console.error)
-
-    setLoading(false)
+      .finally(() => setLoading(false))
+      
   }, [title])
 
   return <DomainCard
