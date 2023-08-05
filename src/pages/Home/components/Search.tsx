@@ -5,6 +5,8 @@ import { isTouchDevice } from 'utils/isTouchDevice';
 import { useMemo } from 'react';
 import Select from 'components/Select';
 
+const DEFAULT_TLDS = ['.com', '.ai', '.io', '.org', '.ru'];
+
 const Search: React.FC = () => {
   const isTouchScreen = useMemo(isTouchDevice, []);
 
@@ -14,7 +16,7 @@ const Search: React.FC = () => {
         Describe your project and come up with suitable domains
       </h2>
       <div className="flex flex-col gap-[25px] rounded-[30px] p-[25px] bg-LightBg1 border-2 border-StrokeColor">
-        <search className="flex gap-[15px]">
+        <div className="flex gap-[15px]">
           <Input
             {...{
               placeholder: 'a task management app for adhd students',
@@ -27,7 +29,7 @@ const Search: React.FC = () => {
           >
             Generate <MagicIcon className="w-[18px] h-[18px]" />
           </Button>
-        </search>
+        </div>
         <div className="flex flex-col gap-[15px]">
           <div className="flex gap-[20px] items-center">
             <h3 className="text-[1.25rem]">Top-level domains</h3>
@@ -35,7 +37,7 @@ const Search: React.FC = () => {
               {isTouchScreen ? 'Tap' : 'Click'} to select
             </div>
           </div>
-          <Select />
+          <Select items={DEFAULT_TLDS}/>
         </div>
       </div>
     </div>

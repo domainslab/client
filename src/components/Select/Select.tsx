@@ -1,8 +1,12 @@
 import { ReactComponent as ArrowExtendIcon } from 'assets/icons/arrow-extend.svg';
-import Button from 'components/Button';
 
-const Select: React.FC = () => {
-  const items = ['.com', '.ai', '.io', '.org', '.ru'];
+type SelectProps = {
+  items: string[],
+}
+
+const Select: React.FC<SelectProps> = ({
+  items,
+}) => {
   const selected = '.com';
   return (
     <div className="flex gap-[20px]">
@@ -15,6 +19,7 @@ const Select: React.FC = () => {
                 'cursor-default bg-Accent hover:border-none hover:py-[7px] hover:px-[20px]'
               }`,
             }}
+            key={item}
           >
             {item}
           </div>
