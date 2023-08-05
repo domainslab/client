@@ -4,6 +4,7 @@ import Button from 'components/Button';
 import { isTouchDevice } from 'utils/isTouchDevice';
 import { useMemo } from 'react';
 import Select from 'components/Select';
+import Card from 'components/Card/Card';
 
 const DEFAULT_TLDS = ['.com', '.ai', '.io', '.org', '.ru'];
 
@@ -15,7 +16,7 @@ const Search: React.FC = () => {
       <h2 className="text-[1.625rem] font-bold">
         Describe your project and come up with suitable domains
       </h2>
-      <div className="flex flex-col gap-[25px] rounded-[30px] p-[25px] bg-LightBg1 border-2 border-StrokeColor">
+      <Card classNames="flex flex-col gap-[25px] p-[25px]">
         <div className="flex gap-[15px]">
           <Input
             {...{
@@ -39,7 +40,7 @@ const Search: React.FC = () => {
           </div>
           <Select items={DEFAULT_TLDS}/>
         </div>
-      </div>
+      </Card>
     </div>
   );
 };

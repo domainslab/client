@@ -4,6 +4,8 @@ type SelectProps = {
   items: string[],
 }
 
+// TODO: Rename to smth less generic or take out of this folder
+// e.g. TldsSelect because I doubt this component would be used for other select as well
 const Select: React.FC<SelectProps> = ({
   items,
 }) => {
