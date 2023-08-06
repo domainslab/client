@@ -2,13 +2,19 @@ import { ReactComponent as MagicIcon } from 'assets/icons/magic.svg';
 import Input from 'components/Input';
 import Button from 'components/Button';
 import { isTouchDevice } from 'utils/isTouchDevice';
-import { useMemo } from 'react';
-import Select from 'components/Select';
+import { useMemo, useState } from 'react';
+import ChipsSelect from 'components/ChipsSelect';
 import Card from 'components/Card/Card';
 
 const DEFAULT_TLDS = ['.com', '.ai', '.io', '.org', '.ru'];
 
 const Search: React.FC = () => {
+  const [selectedTLDs, setSelectedTLDs] = useState<string[]>([]);
+
+  const onChipsSelectChange = (items: string[]) => {
+    setSelectedTLDs([...items]);
+  };
+
   const isTouchScreen = useMemo(isTouchDevice, []);
 
   return (
@@ -38,7 +44,11 @@ const Search: React.FC = () => {
               {isTouchScreen ? 'Tap' : 'Click'} to select
             </div>
           </div>
-          <Select items={DEFAULT_TLDS}/>
+          <ChipsSelect
+            items={DEFAULT_TLDS}
+            selected={selectedTLDs}
+            onChange={onChipsSelectChange}
+          />
         </div>
       </Card>
     </div>
