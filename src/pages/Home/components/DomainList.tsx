@@ -4,7 +4,7 @@ const DomainList: React.FC<{ domains: string[] }> = ({
   domains
 }) => {
   return (
-    <ul className='space-y-[20px]'>
+    <ul className='space-y-[25px]'>
       {
         domains.map((title) => {
           return <li key={title}><DomainCard title={title}/></li>
