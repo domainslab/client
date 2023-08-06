@@ -1,12 +1,16 @@
 import { ReactComponent as ArrowExtendIcon } from 'assets/icons/arrow-extend.svg';
+import { useMemo, useState } from 'react';
 
 type ChipsSelectProps = {
   items: string[];
   selected?: string[];
+  limit?: number;
   onChange?: (items: string[]) => void;
 };
 
-const ChipsSelect: React.FC<ChipsSelectProps> = ({ items, selected, onChange }) => {
+const ChipsSelect: React.FC<ChipsSelectProps> = ({ items, selected, limit, onChange }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
   const onItemClick = (item: string) => () => {
     const itemIndex = selected?.indexOf(item) ?? -1;
     if (itemIndex > -1) {
@@ -20,10 +24,22 @@ const ChipsSelect: React.FC<ChipsSelectProps> = ({ items, selected, onChange }) 
     onChange && onChange([...(selected ?? []), item]);
   };
 
+  const triggerExpanded = () => {
+    setIsExpanded(!isExpanded);
+  };
+
+  const itemsToRender = useMemo(() => {
+    if (isExpanded || !limit) {
+      return items;
+    }
+
+    return items.slice(0, limit);
+  }, [isExpanded, items, limit]);
+
   return (
-    <div className="flex gap-[20px]">
-      <div className="flex gap-[10px]">
-        {items.map(item => (
+    <div className={`flex gap-[20px] ${isExpanded ? 'flex-col' : ''}`}>
+      <div className="flex flex-wrap gap-[10px]">
+        {itemsToRender.map(item => (
           <div
             {...{
               onClick: onItemClick(item),
@@ -40,8 +56,11 @@ const ChipsSelect: React.FC<ChipsSelectProps> = ({ items, selected, onChange }) 
           </div>
         ))}
       </div>
-      <button className="flex gap-[7px] items-center text-[1rem]">
-        More <ArrowExtendIcon className="w-[18px] h-[18px]" />
+      <button
+        onClick={triggerExpanded}
+        className="flex gap-[7px] items-center text-[1rem] hover:text-AccentLight"
+      >
+        {isExpanded ? 'Less' : 'More'} <ArrowExtendIcon className="w-[18px] h-[18px]" />
       </button>
     </div>
   );

@@ -6,7 +6,7 @@ import { useMemo, useState } from 'react';
 import ChipsSelect from 'components/ChipsSelect';
 import Card from 'components/Card/Card';
 
-const DEFAULT_TLDS = ['.com', '.ai', '.io', '.org', '.ru'];
+const DEFAULT_TLDS = ['.com', '.ai', '.io', '.org', '.ru', '.shop', '.net'];
 
 const Search: React.FC = () => {
   const [selectedTLDs, setSelectedTLDs] = useState<string[]>([]);
@@ -47,6 +47,7 @@ const Search: React.FC = () => {
           <ChipsSelect
             items={DEFAULT_TLDS}
             selected={selectedTLDs}
+            limit={5}
             onChange={onChipsSelectChange}
           />
         </div>
