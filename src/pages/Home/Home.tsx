@@ -1,4 +1,5 @@
 import Header from 'pages/components/Header';
+import Footer from 'pages/components/Footer';
 
 import Heading from './components/Heading';
 import Search from './components/Search';
@@ -22,6 +23,7 @@ const HomePage: React.FC = () => {
           <DomainList domains={domains} />
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
