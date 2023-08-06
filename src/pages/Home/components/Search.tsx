@@ -2,20 +2,66 @@ import { ReactComponent as MagicIcon } from 'assets/icons/magic.svg';
 import Input from 'components/Input';
 import Button from 'components/Button';
 import { isTouchDevice } from 'utils/isTouchDevice';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import ChipsSelect from 'components/ChipsSelect';
 import Card from 'components/Card/Card';
+import { getRandomInt } from 'utils/getRandomInt';
 
 const DEFAULT_TLDS = ['.com', '.ai', '.io', '.org', '.ru', '.shop', '.net'];
 
+const target = 'a task management app for adhd students';
+const typingSpeed = 90;
+const blinkingSpeed = 480;
+
 const Search: React.FC = () => {
   const [selectedTLDs, setSelectedTLDs] = useState<string[]>([]);
+
+  const typingRef = useRef<number>(0);
 
   const onChipsSelectChange = (items: string[]) => {
     setSelectedTLDs([...items]);
   };
 
+  const type = () => {
+    if (typingRef.current > target.length) {
+      blink();
+      return;
+    }
+
+    const inputEl = document.getElementById('search-input') as HTMLInputElement;
+    if (!inputEl) {
+      return;
+    }
+
+    inputEl.placeholder = inputEl.placeholder.replace('|', '');
+    inputEl.placeholder += target.charAt(typingRef.current) + '|';
+
+    typingRef.current += 1;
+    setTimeout(type, typingSpeed + getRandomInt(10));
+  };
+
+  const blink = () => {
+    const inputEl = document.getElementById('search-input') as HTMLInputElement;
+    if (!inputEl) {
+      return;
+    }
+
+    if (inputEl.placeholder.charAt(inputEl.placeholder.length - 1) === '|') {
+      inputEl.placeholder = inputEl.placeholder.replace('|', '');
+      setTimeout(blink, blinkingSpeed);
+      return;
+    }
+
+    inputEl.placeholder += '|';
+    setTimeout(blink, blinkingSpeed);
+    return;
+  };
+
   const isTouchScreen = useMemo(isTouchDevice, []);
+
+  useEffect(() => {
+    type();
+  }, []);
 
   return (
     <div className="flex flex-col gap-[15px]">
@@ -26,7 +72,8 @@ const Search: React.FC = () => {
         <div className="flex gap-[15px]">
           <Input
             {...{
-              placeholder: 'a task management app for adhd students',
+              id: 'search-input',
+              // placeholder: 'a task management app for adhd students',
             }}
           />
           <Button
