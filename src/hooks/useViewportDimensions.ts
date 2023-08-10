@@ -17,5 +17,9 @@ export const useViewportDimensions = (): [number, number] => {
     };
   }, [onWindowResize]);
 
+  useEffect(() => {
+    onWindowResize();
+  }, [onWindowResize]);
+
   return [width, height];
 };
