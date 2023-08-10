@@ -21,6 +21,8 @@ const PLACEHOLDERS = [
   "an AI-powered fitness app that adapts and guides users' routines",
 ];
 
+const generateButtonClassNames = 'flex gap-[10px] justify-center items-center';
+
 const Search: React.FC = () => {
   const [selectedTLDs, setSelectedTLDs] = useState<string[]>([]);
 
@@ -36,10 +38,10 @@ const Search: React.FC = () => {
 
   return (
     <div className="flex flex-col gap-[15px]">
-      <h2 className="text-[1.625rem] font-bold">
+      <h2 className="text-[1.625rem] font-bold max-sm:text-[1.25rem]">
         Describe your project and come up with suitable domains
       </h2>
-      <Card classNames="flex flex-col gap-[25px] p-[25px]">
+      <Card classNames="flex flex-col gap-[25px] p-[25px] rounded-[30px] max-sm:p-[15px]">
         <div className="flex gap-[15px]">
           <Input
             {...{
@@ -48,7 +50,7 @@ const Search: React.FC = () => {
           />
           <Button
             {...{
-              className: `flex gap-[10px] justify-center items-center`,
+              className: `${generateButtonClassNames} max-sm:hidden`,
             }}
           >
             Generate <MagicIcon className="w-[18px] h-[18px]" />
@@ -56,7 +58,7 @@ const Search: React.FC = () => {
         </div>
         <div className="flex flex-col gap-[15px]">
           <div className="flex gap-[20px] items-center">
-            <h3 className="text-[1.25rem]">Top-level domains</h3>
+            <h3 className="text-[1.25rem] max-sm:text-[1rem]">Top-level domains</h3>
             <div className="text-[0.75rem] text-TransparentText">
               {isTouchScreen ? 'Tap' : 'Click'} to select
             </div>
@@ -68,6 +70,13 @@ const Search: React.FC = () => {
             onChange={onChipsSelectChange}
           />
         </div>
+        <Button
+          {...{
+            className: `hidden ${generateButtonClassNames} max-sm:flex max-sm:py-[15px] max-sm:text-[1.125rem] max-sm:leading-none`,
+          }}
+        >
+          Generate <MagicIcon className="w-[18px] h-[18px]" />
+        </Button>
       </Card>
     </div>
   );

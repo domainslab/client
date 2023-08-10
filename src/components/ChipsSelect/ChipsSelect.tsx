@@ -8,6 +8,8 @@ type ChipsSelectProps = {
   onChange?: (items: string[]) => void;
 };
 
+const expandButtonClassNames = 'flex gap-[7px] items-center text-[1rem] hover:text-AccentLight';
+
 const ChipsSelect: React.FC<ChipsSelectProps> = ({ items, selected, limit, onChange }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -55,10 +57,16 @@ const ChipsSelect: React.FC<ChipsSelectProps> = ({ items, selected, limit, onCha
             {item}
           </div>
         ))}
+        <button
+          onClick={triggerExpanded}
+          className={`${expandButtonClassNames} ml-[10px] ${isExpanded ? 'hidden' : ''}`}
+        >
+          {isExpanded ? 'Less' : 'More'} <ArrowExtendIcon className="w-[18px] h-[18px]" />
+        </button>
       </div>
       <button
         onClick={triggerExpanded}
-        className="flex gap-[7px] items-center text-[1rem] hover:text-AccentLight"
+        className={` ${expandButtonClassNames} ${isExpanded ? 'block' : 'hidden'}`}
       >
         {isExpanded ? 'Less' : 'More'} <ArrowExtendIcon className="w-[18px] h-[18px]" />
       </button>

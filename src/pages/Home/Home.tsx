@@ -14,7 +14,7 @@ const HomePage: React.FC = () => {
   return (
     <div>
       <Header active="" />
-      <div className="max-w-[1000px] mt-[20px] mb-0 mx-auto flex flex-col gap-[50px]">
+      <div className="max-w-[1000px] mt-[20px] mb-0 mx-auto flex flex-col gap-[50px] max-lg:px-[40px] max-sm:px-[20px] max-sm:gap-[30px]">
         <Heading />
         <Search />
         <div className="flex flex-col gap-[20px]">
