@@ -6,6 +6,7 @@ import { useMemo, useRef, useState } from 'react';
 import ChipsSelect from 'components/ChipsSelect';
 import Card from 'components/Card/Card';
 import { usePlaceholderTypingEffect } from 'hooks/usePlaceholderTypingEffect';
+import { useViewportDimensions } from 'hooks/useViewportDimensions';
 
 const DEFAULT_TLDS = ['.com', '.ai', '.io', '.org', '.ru', '.shop', '.net'];
 
@@ -26,7 +27,11 @@ const generateButtonClassNames = 'flex gap-[10px] justify-center items-center';
 const Search: React.FC = () => {
   const [selectedTLDs, setSelectedTLDs] = useState<string[]>([]);
 
-  const inputRef = useRef<HTMLInputElement>(null);
+  const [windowWidth] = useViewportDimensions();
+
+  // FIXME later
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const inputRef = useRef<any>(null);
 
   const onChipsSelectChange = (items: string[]) => {
     setSelectedTLDs([...items]);
@@ -45,6 +50,7 @@ const Search: React.FC = () => {
         <div className="flex gap-[15px]">
           <Input
             {...{
+              isTextarea: windowWidth < 786,
               ref: inputRef,
             }}
           />

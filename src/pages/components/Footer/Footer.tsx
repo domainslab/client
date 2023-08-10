@@ -2,7 +2,7 @@ import Separator from 'components/Separator/Separator';
 import { ReactComponent as PointIcon } from 'assets/icons/point.svg';
 
 const Footer: React.FC = () => (
-  <footer className="mt-[60px] px-[20px] sm:px-[40px] md:px-[50px]">
+  <footer className="mt-[60px] px-[20px] sm:px-[40px] md:px-[50px] max-sm:mt-[30px]">
     <Separator />
     <div className="py-[30px] flex justify-between text-base items-center opacity-50 font-bold">
       <div>

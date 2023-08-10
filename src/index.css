@@ -30,3 +30,7 @@
     background-position: 200%;
   }
 }
+
+textarea::-webkit-scrollbar {
+  display: none;
+}
