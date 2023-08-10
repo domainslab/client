@@ -16,17 +16,21 @@ const borderColors: Record<StatusT, string> = {
   'Not Available': 'border-WarningBg',
 };
 
-// WIP
 const DomainCard: React.FC<DomainCardProps> = ({ title, isAvailable, isLoading }) => {
   const status: StatusT = (isLoading && 'Loading') || (isAvailable ? 'Available' : 'Not Available');
 
   return (
-    <Card classNames={`flex flex-row justify-between items-center ${borderColors[status]}`}>
-      <div className="flex gap-[20px] items-center">
-        <p className="text-[1.5rem]">{title}</p>
+    <Card
+      classNames={`flex flex-row justify-between items-center gap-x-[20px] gap-y-[15px] ${borderColors[status]} max-sm:p-[15px] max-md:flex-col max-md:items-start`}
+    >
+      <div className="flex gap-x-[20px] gap-y-[7px] items-center flex-wrap max-[440px]:flex-col max-[440px]:items-start max-[440px]:gap-[7px]">
+        <p className="text-[1.5rem] max-sm:text-[1.25rem]">{title}</p>
         <Status status={status} />
       </div>
-      <ProviderButton domain={title} />
+      <ProviderButton
+        domain={title}
+        classNames="shrink-0 w-full md:w-[280px]"
+      />
     </Card>
   );
 };
