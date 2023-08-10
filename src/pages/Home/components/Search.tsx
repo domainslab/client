@@ -9,6 +9,18 @@ import { usePlaceholderTypingEffect } from 'hooks/usePlaceholderTypingEffect';
 
 const DEFAULT_TLDS = ['.com', '.ai', '.io', '.org', '.ru', '.shop', '.net'];
 
+const PLACEHOLDERS = [
+  'a task management app for adhd students',
+  'a meal planning app that combines nutrition and time management',
+  'an educational app that takes students on virtual time-travel journeys',
+  'an IoT-based gardening system for urban dwellers',
+  'a platform where book enthusiasts can connect',
+  'a supportive app that allows parents to prioritize their mental well-being',
+  'a financial management tool tailored to freelancers and gig workers',
+  'an app that helps eco-conscious shoppers discover stylish clothing',
+  "an AI-powered fitness app that adapts and guides users' routines",
+];
+
 const Search: React.FC = () => {
   const [selectedTLDs, setSelectedTLDs] = useState<string[]>([]);
 
@@ -18,17 +30,7 @@ const Search: React.FC = () => {
     setSelectedTLDs([...items]);
   };
 
-  usePlaceholderTypingEffect(inputRef, [
-    'a task management app for adhd students',
-    'a meal planning app that combines nutrition and time management',
-    'an educational app that takes students on virtual time-travel journeys',
-    'an IoT-based gardening system for urban dwellers',
-    'a platform where book enthusiasts can connect',
-    'a supportive app that allows parents to prioritize their mental well-being',
-    'a financial management tool tailored to freelancers and gig workers',
-    'an app that helps eco-conscious shoppers discover stylish clothing',
-    "an AI-powered fitness app that adapts and guides users' routines",
-  ]);
+  usePlaceholderTypingEffect(inputRef, PLACEHOLDERS);
 
   const isTouchScreen = useMemo(isTouchDevice, []);
 
