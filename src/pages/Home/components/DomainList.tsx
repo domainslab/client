@@ -1,6 +1,9 @@
 import DomainCard from 'components/DomainCard';
+import { Domain } from 'types/domains';
 
-const DomainList: React.FC<{ domains: string[] }> = ({ domains }) => {
+type DomainListProps = { domains: Domain[] };
+
+const DomainList: React.FC<DomainListProps> = ({ domains }) => {
   return (
     <ul className="px-[40px] space-y-[25px] max-lg:px-0">
       {domains.map(title => {

@@ -24,18 +24,27 @@ const PLACEHOLDERS = [
 
 const generateButtonClassNames = 'flex gap-[10px] justify-center items-center';
 
-const Search: React.FC = () => {
+type SearchProps = {
+  onSearch: (term: string, { tlds }: { tlds: string[] }) => void;
+  isLoading: boolean;
+};
+
+const Search: React.FC<SearchProps> = ({ onSearch }) => {
   const [selectedTLDs, setSelectedTLDs] = useState<string[]>([]);
 
   const [windowWidth] = useViewportDimensions();
 
-  // FIXME later
+  // TODO: FIXME later
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const inputRef = useRef<any>(null);
 
   const onChipsSelectChange = (items: string[]) => {
     setSelectedTLDs([...items]);
   };
+
+  const onClick = () => {
+    onSearch(inputRef.current.value, { tlds: selectedTLDs });
+  }
 
   usePlaceholderTypingEffect(inputRef, PLACEHOLDERS);
 
@@ -58,6 +67,7 @@ const Search: React.FC = () => {
             {...{
               className: `${generateButtonClassNames} max-sm:hidden`,
             }}
+            onClick={onClick}
           >
             Generate <MagicIcon className="w-[18px] h-[18px]" />
           </Button>
@@ -80,6 +90,7 @@ const Search: React.FC = () => {
           {...{
             className: `hidden ${generateButtonClassNames} max-sm:flex max-sm:py-[15px] max-sm:text-[1.125rem] max-sm:leading-none`,
           }}
+          onClick={onClick}
         >
           Generate <MagicIcon className="w-[18px] h-[18px]" />
         </Button>
