@@ -14,7 +14,7 @@ const HomePage: React.FC = () => {
   return (
     <div>
       <Header active="" />
-      <div className="max-w-[1000px] mt-[20px] mb-0 mx-auto flex flex-col gap-[50px] max-lg:px-[40px] max-sm:px-[20px] max-sm:gap-[30px]">
+      <div className="min-h-[calc(100vh-162px)] max-w-[1000px] mt-[20px] mb-0 mx-auto flex flex-col gap-[50px] max-lg:px-[40px] max-sm:px-[20px] max-sm:gap-[30px]">
         <Heading />
         <Search
           onSearch={query}
