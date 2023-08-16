@@ -24,6 +24,7 @@ export const usePlaceholderTypingEffect = (
   const chillDuration = options?.chillDuration ?? 1000;
   const cycles = options?.cycles ?? 5;
 
+  const isStartedRef = useRef<boolean>(false);
   const typingRef = useRef<number>(0);
 
   const erase = useCallback(() => {
@@ -127,6 +128,7 @@ export const usePlaceholderTypingEffect = (
   useEffect(() => {
     const init = async () => {
       if (inputRef.current) {
+        isStartedRef.current = true;
         for (let i = 0; i < cycles; i++) {
           for (const [index, item] of items.entries()) {
             await type(item, index === items.length - 1 && cycles === i + 1);
@@ -135,6 +137,6 @@ export const usePlaceholderTypingEffect = (
       }
     };
 
-    init();
+    if (!isStartedRef.current) init();
   }, [cycles, inputRef, items, type]);
 };
