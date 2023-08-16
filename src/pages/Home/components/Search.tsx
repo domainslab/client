@@ -8,7 +8,22 @@ import Card from 'components/Card/Card';
 import { usePlaceholderTypingEffect } from 'hooks/usePlaceholderTypingEffect';
 import { useViewportDimensions } from 'hooks/useViewportDimensions';
 
-const DEFAULT_TLDS = ['.com', '.ai', '.io', '.org', '.ru', '.shop', '.net'];
+const DEFAULT_TLDS = [
+  '.com',
+  '.ai',
+  '.io',
+  '.org',
+  '.shop',
+  '.net',
+  '.biz',
+  '.cat',
+  '.edu',
+  '.info',
+  '.travel',
+  '.online',
+  '.pro',
+  '.gg',
+];
 
 const PLACEHOLDERS = [
   'a task management app for adhd students',
@@ -44,7 +59,7 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
 
   const onClick = () => {
     onSearch(inputRef.current.value, { tlds: selectedTLDs });
-  }
+  };
 
   usePlaceholderTypingEffect(inputRef, PLACEHOLDERS);
 
