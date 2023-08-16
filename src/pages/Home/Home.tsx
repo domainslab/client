@@ -8,14 +8,6 @@ import DomainList from './components/DomainList';
 import Separator from 'components/Separator/Separator';
 import useSearch from './components/useSearch';
 
-const DEFAULT_DOMAINS = [
-  'ask.ai',
-  'GeniAI.com',
-  'DomGenius.ai',
-  'AIpoweredDomains.com',
-  'DomainWizard.ai',
-];
-
 const HomePage: React.FC = () => {
   const { isLoading, domains, query } = useSearch();
 
@@ -29,7 +21,7 @@ const HomePage: React.FC = () => {
           isLoading={isLoading}
         />
         <div className="flex flex-col gap-[20px]">
-          <Separator />
+          {((domains && domains.length > 0) || isLoading) && <Separator />}
           {isLoading ? (
             <div className="flex flex-col items-center">
               <PreloaderIcon
@@ -39,14 +31,14 @@ const HomePage: React.FC = () => {
                 className="animate-spin"
               />
             </div>
-          ) : (
+          ) : domains && domains.length > 0 ? (
             <>
               <h3 className="font-bold text-[1.625rem]">
                 Take a look at what we've generated for you
               </h3>
-              <DomainList domains={domains || DEFAULT_DOMAINS} />
+              <DomainList domains={domains} />
             </>
-          )}
+          ) : null}
         </div>
       </div>
       <Footer />
