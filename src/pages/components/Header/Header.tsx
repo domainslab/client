@@ -6,7 +6,7 @@ type HeaderProps = {
 
 const Header: React.FC<HeaderProps> = ({ active }) => (
   <header className="h-[102px] p-[40px] flex justify-between text-base max-sm:px-[20px]">
-    <h1>domains.ai</h1>
+    <h1>domainslab.ai</h1>
     <nav className="flex gap-[40px] max-sm:hidden">
       <NavItem
         isActive={active === ''}
