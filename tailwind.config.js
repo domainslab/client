@@ -25,6 +25,9 @@ export default {
       ],
     },
     extend: {
+      boxShadow: {
+        SearchCard: '0px 10px 50px 0px rgba(178, 178, 178, 0.10);',
+      },
       colors: {
         transparent: 'transparent',
         current: 'currentColor',

@@ -104,7 +104,7 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
       <h2 className="text-[1.625rem] font-bold max-sm:text-[1.25rem]">
         Describe your project and come up with suitable domains
       </h2>
-      <Card classNames="flex flex-col gap-[25px] p-[25px] rounded-[30px] max-sm:p-[15px]">
+      <Card classNames="flex bg-LightBg1 flex-col gap-[25px] p-[25px] rounded-[30px] max-sm:p-[15px] backdrop-blur-[2.5px] shadow-SearchCard">
         <div className="flex gap-[15px]">
           <Input
             {...{
