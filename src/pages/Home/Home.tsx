@@ -3,7 +3,6 @@ import Footer from 'pages/components/Footer';
 import Heading from './components/Heading';
 import Search from './components/Search';
 import DomainList from './components/DomainList';
-import Separator from 'components/Separator/Separator';
 import useSearch from './components/useSearch';
 import Loader from 'components/Loader';
 import { ReactComponent as BgLines } from 'assets/images/bg-lines.svg';
