@@ -85,6 +85,12 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
     setSelectedTLDs([...items]);
   };
 
+  const onKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      onClick();
+    }
+  };
+
   const onClick = () => {
     onSearch(inputRef.current.value, { tlds: selectedTLDs });
   };
@@ -104,13 +110,14 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
             {...{
               isTextarea: windowWidth < 786,
               ref: inputRef,
+              onKeyDown,
             }}
           />
           <Button
             {...{
               className: `${generateButtonClassNames} max-sm:hidden`,
+              onClick,
             }}
-            onClick={onClick}
           >
             Generate <MagicIcon className="w-[18px] h-[18px]" />
           </Button>
@@ -132,8 +139,8 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
         <Button
           {...{
             className: `hidden ${generateButtonClassNames} max-sm:flex max-sm:py-[15px] max-sm:text-[1.125rem] max-sm:leading-none`,
+            onClick,
           }}
-          onClick={onClick}
         >
           Generate <MagicIcon className="w-[18px] h-[18px]" />
         </Button>
