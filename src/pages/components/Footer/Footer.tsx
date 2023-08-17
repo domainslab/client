@@ -16,7 +16,7 @@ const Footer: React.FC = () => (
           </li>
         </ul>
       </div>
-      <div className="text-Secondary weight-bold tracking-[0.03rem]">domainslab.ai</div>
+      <div className="text-Secondary font-bold tracking-[0.03rem]">domainslab.ai</div>
     </div>
   </footer>
 );

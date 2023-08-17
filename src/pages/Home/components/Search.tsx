@@ -124,7 +124,7 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
         </div>
         <div className="flex flex-col gap-[15px]">
           <div className="flex gap-[20px] items-center">
-            <h3 className="text-[1.25rem] max-sm:text-[1rem]">Top-level domains</h3>
+            <h3 className="text-[1.25rem] font-bold max-sm:text-[1rem]">Top-level domains</h3>
             <div className="text-[0.75rem] text-TransparentText">
               {isTouchScreen ? 'Tap' : 'Click'} to select
             </div>
