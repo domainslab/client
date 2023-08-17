@@ -1,12 +1,12 @@
 import Header from 'pages/components/Header';
 import Footer from 'pages/components/Footer';
-import { ReactComponent as PreloaderIcon } from 'assets/icons/preloader.svg';
 
 import Heading from './components/Heading';
 import Search from './components/Search';
 import DomainList from './components/DomainList';
 import Separator from 'components/Separator/Separator';
 import useSearch from './components/useSearch';
+import Loader from 'components/Loader';
 
 const HomePage: React.FC = () => {
   const { isLoading, domains, query } = useSearch();
@@ -24,12 +24,7 @@ const HomePage: React.FC = () => {
           {((domains && domains.length > 0) || isLoading) && <Separator />}
           {isLoading ? (
             <div className="flex flex-col items-center">
-              <PreloaderIcon
-                viewBox="0 0 24 24"
-                width="200"
-                height="200"
-                className="animate-spin"
-              />
+              <Loader />
             </div>
           ) : domains && domains.length > 0 ? (
             <>
