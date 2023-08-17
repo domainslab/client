@@ -7,8 +7,8 @@ const Heading: React.FC = () => (
       Type your project ideas
     </h1>
     <div className="flex gap-[40px] justify-center">
-      <GoDaddyLogo />
-      <OpenAILogo />
+      <GoDaddyLogo className="h-[22px]" />
+      <OpenAILogo className="h-[22px]" />
     </div>
   </div>
 );

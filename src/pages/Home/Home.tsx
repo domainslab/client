@@ -21,16 +21,15 @@ const HomePage: React.FC = () => {
         }}
       />
       <Header active="" />
-      <div className="min-h-[calc(100vh-162px)] max-w-[1000px] mt-[20px] mb-0 mx-auto flex flex-col gap-[50px] max-lg:px-[40px] max-sm:px-[20px] max-sm:gap-[30px]">
+      <div className="min-h-[calc(100vh-162px)] max-w-[1000px] mt-[20px] mb-0 mx-auto flex flex-col gap-[70px] max-lg:px-[40px] max-sm:px-[20px] max-sm:gap-[30px]">
         <Heading />
         <Search
           onSearch={query}
           isLoading={isLoading}
         />
         <div className="flex flex-col gap-[20px]">
-          {domains && domains.length > 0 && <Separator />}
           {isLoading ? (
-            <div className="flex flex-col items-center mt-[50px]">
+            <div className="flex flex-col items-center mt-[30px]">
               <Loader />
             </div>
           ) : domains && domains.length > 0 ? (

@@ -7,7 +7,7 @@ type CardProps = {
 
 const Card: React.FC<CardProps> = ({ children, classNames = '' }) => {
   const cardClassNames = twMerge(
-    'rounded-[20px] p-[20px] bg-LightBg2 border-2 border-StrokeColor',
+    'rounded-[20px] p-[15px] pl-[25px]  bg-LightBg2 border-2 border-StrokeColor',
     classNames
   );
 

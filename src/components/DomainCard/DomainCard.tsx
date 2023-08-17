@@ -24,7 +24,7 @@ const DomainCard: React.FC<DomainCardProps> = ({ title, isAvailable, isLoading }
       classNames={`flex flex-row justify-between items-center gap-x-[20px] gap-y-[15px] ${borderColors[status]} max-sm:p-[15px] max-md:flex-col max-md:items-start`}
     >
       <div className="flex gap-x-[20px] gap-y-[7px] items-center flex-wrap max-[440px]:flex-col max-[440px]:items-start max-[440px]:gap-[7px]">
-        <p className="text-[1.5rem] max-sm:text-[1.25rem]">{title}</p>
+        <p className="text-[1.375rem] font-semibold max-sm:text-[1.25rem]">{title}</p>
         <Status status={status} />
       </div>
       <ProviderButton

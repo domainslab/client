@@ -14,13 +14,13 @@ const ProviderButton: React.FC<ProviderButtonProps> = ({ domain, classNames = ''
       href: getGoDaddyDomainURL(domain),
       target: '_blank',
       className: twMerge(
-        'block bg-LightBg2 w-[280px] py-[10px] px-[15px] flex items-center gap-[10px] border-[2px] border-StrokeColor rounded-[12px] max-sm:w-full',
+        'block bg-LightBg2 w-[280px] py-[10px] px-[15px] flex items-center gap-[10px] border-[2px] border-StrokeColor rounded-[12px] max-sm:w-full transition-colors ease-in-out delay-75 hover:border-Primary',
         classNames
       ),
     }}
   >
     <GoDaddyLogoSmall />
-    <div className="flex-1 max-sm:text-[1rem]">GoDaddy</div>
+    <div className="flex-1 leading-[1rem] text-[1rem]">GoDaddy</div>
     <ArrowMoreIcon className="block w-[22px] h-[22px] text-Secondary" />
   </a>
 );

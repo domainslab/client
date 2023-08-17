@@ -21,14 +21,14 @@ const Status: React.FC<{ status: StatusT }> = ({ status }) => {
 
   return (
     <div
-      className={`flex flex-row items-center py-[7px] px-[15px] gap-[7px] rounded-[100px] font-bold leading-normal ${classNames[status]}`}
+      className={`flex flex-row items-center py-[5px] px-[10px] gap-[5px] rounded-[100px] font-bold leading-normal ${classNames[status]}`}
     >
       <IconComponent
-        width="18px"
-        height="18px"
+        width="14px"
+        height="14px"
         className={status === 'Loading' ? 'animate-spin' : ''}
       />
-      <div className="text-[0.875rem]">{status}</div>
+      <div className="text-[0.75rem]">{status}</div>
     </div>
   );
 };

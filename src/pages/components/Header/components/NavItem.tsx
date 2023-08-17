@@ -10,7 +10,7 @@ const NavItem: React.FC<NavItemProps & NavLinkProps & React.RefAttributes<HTMLAn
 }) => (
   <NavLink
     {...{
-      className: `text-TransparentText transition-colors transition-colors ease-in-out delay-75 hover:text-Secondary weight-bold ${
+      className: `text-TransparentText transition-colors transition-colors ease-in-out delay-75 hover:text-Secondary font-bold ${
         isActive && `!text-Secondary`
       }`,
       ...props,
