@@ -16,7 +16,7 @@ const Footer: React.FC = () => (
           </li>
         </ul>
       </div>
-      <div>domains.ai</div>
+      <div>domainslab.ai</div>
     </div>
   </footer>
 );
