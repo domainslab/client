@@ -10,4 +10,4 @@
 
 - [ ] Put API calls into separate service/services
 - [ ] Add analytics
-- [ ] Check SEO setup using (this checklist)[https://ahrefs.com/blog/seo-checklist/#basic-seo-checklist]
+- [ ] Check SEO setup using [this checklist](https://ahrefs.com/blog/seo-checklist/#basic-seo-checklist)
