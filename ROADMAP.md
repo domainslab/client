@@ -5,6 +5,7 @@
 - [ ] Load more domains on scroll to bottom
 - [ ] Replace TLDs chips select with search dropdown to improve UX on mobile devices
 - [ ] Replace default Favicon
+- [ ] Improve API errors handling
 
 ## Tech Debt
 
