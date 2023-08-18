@@ -5,7 +5,7 @@ import type { Domain } from 'types/domains';
 
 // TODO: Place in separate service
 // TODO: Remove duplicaitons of api domain
-const DOMAINS_API = 'https://domain-node-88852dc28831.herokuapp.com/api/v1/domains';
+const DOMAINS_API = 'http://api.domainslab.ai/v1/domains';
 
 type useSearchReturn = {
   isLoading: boolean;

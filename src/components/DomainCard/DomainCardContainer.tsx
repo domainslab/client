@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import DomainCard from './DomainCard';
 import axios from 'axios';
 
-const API = 'https://domain-node-88852dc28831.herokuapp.com/api/v1/domain_status';
+const API = 'http://api.domainslab.ai/v1/domain_status';
 
 type DomainCardContainerProps = {
   title: string;
