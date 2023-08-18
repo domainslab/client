@@ -5,7 +5,7 @@ import type { Domain } from 'types/domains';
 
 // TODO: Place in separate service
 // TODO: Remove duplicaitons of api domain
-const DOMAINS_API = 'http://api.domainslab.ai/v1/domains';
+const DOMAINS_API = 'https://api.domainslab.ai/v1/domains';
 
 type useSearchReturn = {
   isLoading: boolean;
