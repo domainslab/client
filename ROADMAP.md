@@ -10,5 +10,5 @@
 ## Tech Debt
 
 - [ ] Put API calls into separate service/services
-- [ ] Add analytics
+- [x] Add analytics
 - [ ] Check SEO setup using [this checklist](https://ahrefs.com/blog/seo-checklist/#basic-seo-checklist)
