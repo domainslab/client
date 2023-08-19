@@ -2,7 +2,7 @@ import { ReactComponent as MagicIcon } from 'assets/icons/magic.svg';
 import Input from 'components/Input';
 import Button from 'components/Button';
 import { isTouchDevice } from 'utils/isTouchDevice';
-import { ChangeEvent, useMemo, useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import ChipsSelect from 'components/ChipsSelect';
 import Card from 'components/Card/Card';
 import { usePlaceholderTypingEffect } from 'hooks/usePlaceholderTypingEffect';
