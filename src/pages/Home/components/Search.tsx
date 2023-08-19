@@ -2,7 +2,7 @@ import { ReactComponent as MagicIcon } from 'assets/icons/magic.svg';
 import Input from 'components/Input';
 import Button from 'components/Button';
 import { isTouchDevice } from 'utils/isTouchDevice';
-import { useMemo, useRef, useState } from 'react';
+import { ChangeEvent, useMemo, useRef, useState } from 'react';
 import ChipsSelect from 'components/ChipsSelect';
 import Card from 'components/Card/Card';
 import { usePlaceholderTypingEffect } from 'hooks/usePlaceholderTypingEffect';
@@ -74,28 +74,40 @@ type SearchProps = {
 
 const Search: React.FC<SearchProps> = ({ onSearch }) => {
   const [selectedTLDs, setSelectedTLDs] = useState<string[]>([]);
-
-  const [windowWidth] = useViewportDimensions();
+  const [inputValue, setInputValue] = useState('');
+  const [inputError, setInputError] = useState(false);
 
   // TODO: FIXME later
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const inputRef = useRef<any>(null);
 
-  const onChipsSelectChange = (items: string[]) => {
-    setSelectedTLDs([...items]);
+  const [windowWidth] = useViewportDimensions();
+
+  usePlaceholderTypingEffect(inputRef, PLACEHOLDERS);
+
+  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputError(false);
+    setInputValue(e.target.value);
   };
 
-  const onKeyDown = (e: React.KeyboardEvent) => {
+  const onInputKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
-      onClick();
+      onButtonClick();
     }
   };
 
-  const onClick = () => {
+  const onButtonClick = () => {
+    if (inputValue.trim().length === 0) {
+      setInputError(true);
+      return;
+    }
+
     onSearch(inputRef.current.value, { tlds: selectedTLDs });
   };
 
-  usePlaceholderTypingEffect(inputRef, PLACEHOLDERS);
+  const onChipsSelectChange = (items: string[]) => {
+    setSelectedTLDs([...items]);
+  };
 
   const isTouchScreen = useMemo(isTouchDevice, []);
 
@@ -108,15 +120,19 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
         <div className="flex gap-[15px]">
           <Input
             {...{
-              isTextarea: windowWidth < 786,
+              className: windowWidth < 640 ? 'min-h-[85px] leading-[1.25rem] text-[1rem]' : '',
+              isTextarea: windowWidth < 640,
               ref: inputRef,
-              onKeyDown,
+              value: inputValue,
+              error: inputError,
+              onChange: onInputChange,
+              onKeyDown: onInputKeyDown,
             }}
           />
           <Button
             {...{
               className: `${generateButtonClassNames} max-sm:hidden`,
-              onClick,
+              onClick: onButtonClick,
             }}
           >
             Generate <MagicIcon className="w-[18px] h-[18px]" />
@@ -139,7 +155,7 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
         <Button
           {...{
             className: `hidden ${generateButtonClassNames} max-sm:flex max-sm:py-[15px] max-sm:text-[1.125rem] max-sm:leading-none`,
-            onClick,
+            onClick: onButtonClick,
           }}
         >
           Generate <MagicIcon className="w-[18px] h-[18px]" />
