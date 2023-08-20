@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useState, useCallback } from 'react';
 
 import type { Domain } from 'types/domains';
+import { getRequestSignature } from 'utils/getRequestSignature';
 
 // TODO: Place in separate service
 // TODO: Remove duplicaitons of api domain
@@ -21,7 +22,12 @@ const useSearch = (): useSearchReturn => {
     setloading(true);
 
     axios
-      .get(DOMAINS_API, { params: { desc: term, tlds: tlds } })
+      .get(DOMAINS_API, {
+        params: { desc: term, tlds: tlds },
+        headers: {
+          'X-DomainsLab-Auth': getRequestSignature(),
+        },
+      })
       .then(res => setDomains(res.data.domains))
       .catch(console.error)
       .finally(() => setloading(false));

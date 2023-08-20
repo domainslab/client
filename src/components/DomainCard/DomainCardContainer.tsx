@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import DomainCard from './DomainCard';
 import axios from 'axios';
+import { getRequestSignature } from 'utils/getRequestSignature';
 
 const API = 'https://api.domainslab.ai/v1/domain_status';
 
@@ -14,7 +15,12 @@ const DomainCardContainer: React.FC<DomainCardContainerProps> = ({ title }) => {
 
   useEffect(() => {
     axios
-      .get(API, { params: { domain: title } })
+      .get(API, {
+        params: { domain: title },
+        headers: {
+          'X-DomainsLab-Auth': getRequestSignature(),
+        },
+      })
       .then(res => setAvailable(res.data.isAvailable))
       .catch(console.error)
       .finally(() => setLoading(false));

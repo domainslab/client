@@ -11,6 +11,7 @@ import { useViewportDimensions } from 'hooks/useViewportDimensions';
 const HomePage: React.FC = () => {
   const { isLoading, domains, query } = useSearch();
   const [width] = useViewportDimensions();
+
   return (
     <div>
       <BgLines
