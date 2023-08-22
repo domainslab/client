@@ -1,6 +1,7 @@
 # ROADMAP
 
 - [ ] Add 404 page
+- [ ] Static 404.html to replace default GH Pages 404 after reloading React 404
 - [ ] Add `page in progress` page
 - [ ] Load more domains on scroll to bottom
 - [ ] Replace TLDs chips select with search dropdown to improve UX on mobile devices

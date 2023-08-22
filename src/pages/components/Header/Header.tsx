@@ -1,4 +1,4 @@
-import NavItem from './components/NavItem';
+import NavItem from '../../../components/NavItem/NavItem';
 
 type HeaderProps = {
   active?: string;
