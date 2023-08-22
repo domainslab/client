@@ -10,6 +10,7 @@
 
 ## Tech Debt
 
+- [ ] Migrate to Heroku
 - [ ] Put API calls into separate service/services
 - [x] Add analytics
 - [ ] Check SEO setup using [this checklist](https://ahrefs.com/blog/seo-checklist/#basic-seo-checklist)
