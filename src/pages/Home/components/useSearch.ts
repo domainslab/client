@@ -6,7 +6,7 @@ import { getRequestSignature } from 'utils/getRequestSignature';
 
 // TODO: Place in separate service
 // TODO: Remove duplicaitons of api domain
-const DOMAINS_API = 'https://api.domainslab.ai/v1/domains';
+const DOMAINS_API = 'http://localhost:3000/v1/domains';
 
 type useSearchReturn = {
   isLoading: boolean;
@@ -23,7 +23,7 @@ const useSearch = (): useSearchReturn => {
 
     axios
       .get(DOMAINS_API, {
-        params: { desc: term, tlds: tlds },
+        params: { desc: term, tlds: tlds.join(',') },
         headers: {
           'X-DomainsLab-Auth': getRequestSignature(),
         },
