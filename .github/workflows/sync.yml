@@ -1,0 +1,25 @@
+name: sync with fork
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: update target
+        run: |
+          git config --global user.name 'bogdan'
+          git config --global user.email 'greenwookez@users.noreply.github.com'
+
+          git pull --unshallow
+          
+          git remote add target https://github.com/greenwookez/domainslab.ai.client.git
+          git fetch upstream
+          
+          git checkout -b feature/x origin/feature/x
+          git merge --no-edit upstream/feature/x
+          git push target master
