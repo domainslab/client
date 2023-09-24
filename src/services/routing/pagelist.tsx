@@ -16,10 +16,6 @@ export const pages: RouteObject[] = [
     element: <UnderConstruction />,
   },
   {
-    path: '/contribute',
-    element: <UnderConstruction />,
-  },
-  {
     path: '/developers',
     element: <UnderConstruction />,
   },

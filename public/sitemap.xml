@@ -15,11 +15,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.domainslab.ai/contribute</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://www.domainslab.ai/developers</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

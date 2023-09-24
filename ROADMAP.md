@@ -6,6 +6,9 @@
 - [ ] Replace TLDs chips select with search dropdown to improve UX on mobile devices
 - [ ] Replace default Favicon
 - [ ] Improve API errors handling
+- [ ] Complete About page
+- [ ] Improve README.md 
+- [ ] Add CONTRIBUTING.md
 
 ## Tech Debt
 
