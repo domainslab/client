@@ -23,12 +23,6 @@ const Header: React.FC<HeaderProps> = ({ active }) => (
         About
       </NavItem>
       <NavItem
-        isActive={active === 'contacts'}
-        to="/contacts"
-      >
-        Contacts
-      </NavItem>
-      <NavItem
         isActive={active === 'contribute'}
         to="/contribute"
       >
