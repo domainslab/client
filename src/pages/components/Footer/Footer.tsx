@@ -1,7 +1,7 @@
 import Separator from 'components/Separator/Separator';
 import { ReactComponent as PointIcon } from 'assets/icons/point.svg';
 import NavItem from 'components/NavItem';
-import { ReactComponent as GithubIcon } from 'assets/icons/github.svg';
+// import { ReactComponent as GithubIcon } from 'assets/icons/github.svg';
 import Colors from 'assets/colors/colors';
 
 const Footer: React.FC = () => (
@@ -16,13 +16,13 @@ const Footer: React.FC = () => (
         <li>
           <NavItem to="/policy">Policy</NavItem>
         </li>
-        <PointIcon className="block w-[12px] h-[12px]" />
+{/*         <PointIcon className="block w-[12px] h-[12px]" />
         <li>
           <NavItem to="https://github.com/domainslab/client" className="flex flex-row items-center gap-2">
             Contribute
             <GithubIcon fill={Colors.TransparentText} />
           </NavItem>
-        </li>
+        </li> */}
       </ul>
       <div className="text-Secondary font-bold tracking-[0.03rem] select-none">domainslab.ai</div>
     </div>
