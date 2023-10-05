@@ -8,7 +8,7 @@ import { useContext} from 'react';
 }*/
 
 import {  DomainContext } from './DomainContextProvider';
-
+//TODO убрать, оставить только провайдер
 
 export function useDomainContext(){
   const domainContext = useContext(DomainContext)
