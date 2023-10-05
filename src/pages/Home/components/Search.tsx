@@ -2,11 +2,13 @@ import { ReactComponent as MagicIcon } from 'assets/icons/magic.svg';
 import Input from 'components/Input';
 import Button from 'components/Button';
 import { isTouchDevice } from 'utils/isTouchDevice';
-import { useMemo, useRef, useState } from 'react';
+import {  useMemo, useRef, useState } from 'react';
 import ChipsSelect from 'components/ChipsSelect';
 import Card from 'components/Card/Card';
 import { usePlaceholderTypingEffect } from 'hooks/usePlaceholderTypingEffect';
 import { useViewportDimensions } from 'hooks/useViewportDimensions';
+import { useDomainContext } from '../../../contexts/DomainContext/DomainContext';
+import { apiRequest } from '../../../services/api/RequestDomains';
 
 const DEFAULT_TLDS = [
   '.com',
@@ -67,15 +69,14 @@ const PLACEHOLDERS = [
 
 const generateButtonClassNames = 'flex gap-[10px] justify-center items-center';
 
-type SearchProps = {
-  onSearch: (term: string, { tlds }: { tlds: string[] }) => void;
-  isLoading: boolean;
-};
 
-const Search: React.FC<SearchProps> = ({ onSearch }) => {
+
+const Search: React.FC = () => {
   const [selectedTLDs, setSelectedTLDs] = useState<string[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [inputError, setInputError] = useState(false);
+
+  const {setDomains,domains, setLoading, setLastPrompt, setLastTlds, lastPrompt, lastTlds} = useDomainContext()
 
   // TODO: FIXME later
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -101,8 +102,17 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
       setInputError(true);
       return;
     }
+    setLoading(true)
+    setLastPrompt(inputRef.current.value)
+    setLastTlds(selectedTLDs)
+    console.log(lastPrompt, lastTlds)
+    apiRequest( inputRef.current.value, selectedTLDs )
+      .then(res => {setDomains(res.data.domains)
+      console.log(domains)})
+      .catch(console.error)
+      .finally(()=>{
 
-    onSearch(inputRef.current.value, { tlds: selectedTLDs });
+        setLoading(false) })
   };
 
   const onChipsSelectChange = (items: string[]) => {

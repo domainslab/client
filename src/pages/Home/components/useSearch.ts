@@ -1,12 +1,13 @@
-import axios from 'axios';
+/*import axios from 'axios';
 import { useState, useCallback } from 'react';
 
 import type { Domain } from 'types/domains';
 import { getRequestSignature } from 'utils/getRequestSignature';
 
+
 // TODO: Place in separate service
 // TODO: Remove duplicaitons of api domain
-const DOMAINS_API = 'https://api.domainslab.ai/v1/domains';
+
 
 type useSearchReturn = {
   isLoading: boolean;
@@ -14,9 +15,9 @@ type useSearchReturn = {
   query: (term: string, { tlds }: { tlds: string[] }) => void;
 };
 
-const useSearch = (): useSearchReturn => {
+const useSearch = () => {
+
   const [isLoading, setloading] = useState<boolean>(false);
-  const [domains, setDomains] = useState<Domain[] | null>(null);
 
   const query = useCallback((term: string, { tlds }: { tlds: string[] }) => {
     setloading(true);
@@ -26,7 +27,7 @@ const useSearch = (): useSearchReturn => {
         params: { desc: term, tlds: tlds.join(',') },
         headers: {
           'X-DomainsLab-Auth': getRequestSignature(),
-        },
+        }
       })
       .then(res => setDomains(res.data.domains))
       .catch(console.error)
@@ -40,4 +41,4 @@ const useSearch = (): useSearchReturn => {
   };
 };
 
-export default useSearch;
+export default useSearch;*/
