@@ -2,13 +2,13 @@ import { ReactComponent as MagicIcon } from 'assets/icons/magic.svg';
 import Input from 'components/Input';
 import Button from 'components/Button';
 import { isTouchDevice } from 'utils/isTouchDevice';
-import {  useMemo, useRef, useState } from 'react';
+import { useContext, useMemo, useRef, useState } from 'react';
 import ChipsSelect from 'components/ChipsSelect';
 import Card from 'components/Card/Card';
 import { usePlaceholderTypingEffect } from 'hooks/usePlaceholderTypingEffect';
 import { useViewportDimensions } from 'hooks/useViewportDimensions';
-import { useDomainContext } from '../../../contexts/DomainContext/DomainContext';
-import { apiRequest } from '../../../services/api/RequestDomains';
+import { getNewDomainListRequest } from 'services/api/RequestDomains';
+import { DomainContext } from 'contexts/DomainContext/DomainContextProvider';
 
 const DEFAULT_TLDS = [
   '.com',
@@ -76,11 +76,9 @@ const Search: React.FC = () => {
   const [inputValue, setInputValue] = useState('');
   const [inputError, setInputError] = useState(false);
 
-  const {setDomains,domains, setLoading, setLastPrompt, setLastTlds, lastPrompt, lastTlds} = useDomainContext()
+  const { setDomains, setLoading, setLastPrompt, setLastTlds } = useContext(DomainContext)
 
-  // TODO: FIXME later
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const inputRef = useRef<any>(null);
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
   const [windowWidth] = useViewportDimensions();
 
@@ -103,16 +101,13 @@ const Search: React.FC = () => {
       return;
     }
     setLoading(true)
-    setLastPrompt(inputRef.current.value)
+    setLastPrompt(inputValue)
     setLastTlds(selectedTLDs)
-    console.log(lastPrompt, lastTlds)
-    apiRequest( inputRef.current.value, selectedTLDs )
-      .then(res => {setDomains(res.data.domains)
-      console.log(domains)})
+    getNewDomainListRequest( inputValue, selectedTLDs )
+      .then(res => setDomains(res.data.domains))
       .catch(console.error)
       .finally(()=>{
-
-        setLoading(false) })
+        setLoading(false)})
   };
 
   const onChipsSelectChange = (items: string[]) => {

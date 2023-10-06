@@ -1,9 +1,12 @@
 import { createContext, useState } from 'react';
 import { Domain } from '../../types/domains';
-import { apiRequest } from '../../services/api/RequestDomains';
+import { getNewDomainListRequest } from '../../services/api/RequestDomains';
 
+interface DomainContextProps{
+  domains: string
+}
 
-export const DomainContext = createContext<any>(undefined)
+export const DomainContext = createContext<DomainContextProps | undefined>(undefined)
 
 export const DomainProvider = ({children}) =>{
 
@@ -15,7 +18,7 @@ export const DomainProvider = ({children}) =>{
   const [lastTlds, setLastTlds]=useState<string[]>([])
 
   const addMoreDomains = () =>{
-    return apiRequest(lastPrompt, lastTlds)
+    return getNewDomainListRequest(lastPrompt, lastTlds)
       .then(res=>setDomains(addDomainsToExisting(res.data.domains)))
       .catch(console.error)
   }

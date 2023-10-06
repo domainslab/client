@@ -1,15 +1,15 @@
 import DomainCard from 'components/DomainCard';
-import { useDomainContext } from '../../../contexts/DomainContext/DomainContext';
 import Loader from '../../../components/Loader/Loader';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Button from '../../../components/Button/Button';
+import { DomainContext } from '../../../contexts/DomainContext/DomainContextProvider';
 
 
 
 const DomainList: React.FC = () => {
   const [localLoading, setLocalLoading] = useState(false)
 
-  const {domains, isLoading, addMoreDomains} = useDomainContext()
+  const {domains, isLoading, addMoreDomains} = useContext(DomainContext)
 
   const onButtonClick = ()=>{
     setLocalLoading(true)

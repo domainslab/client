@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import DomainCard from './DomainCard';
-import axios from 'axios';
-import { getRequestSignature } from 'utils/getRequestSignature';
-import { apiDomainStatusRequest } from '../../services/api/RequestAvailability';
+import { getDomainStatusRequest } from '../../services/api/RequestAvailability';
 
 
 
@@ -15,7 +13,7 @@ const DomainCardContainer: React.FC<DomainCardContainerProps> = ({ title }) => {
   const [isAvailable, setAvailable] = useState<boolean | null>(null);
 
   useEffect(() => {
-    apiDomainStatusRequest(title)
+    getDomainStatusRequest(title)
       .then(res => setAvailable(res.data.isAvailable))
       .catch(console.error)
       .finally(() => setLoading(false));
