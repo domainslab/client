@@ -1,14 +1,20 @@
-import axios from 'axios';
 import { getRequestSignature } from '../../utils/getRequestSignature';
+import { makeGetBaseRequest } from './MakeBaseRequest';
 
-const DOMAINS_API = 'https://api.domainslab.ai/v1/domains';
+const URL = 'domains'
 
-export function apiRequest (prompt: string, tlds: string[]) : Promise<any>{
- return axios
-    .get(DOMAINS_API, {
-      params: { desc: prompt, tlds: tlds.join(',') },
-      headers: {
-        'X-DomainsLab-Auth': getRequestSignature(),
+export function getNewDomainListRequest(prompt,tlds){
+  const options = {
+    params:
+      {
+        desc: prompt,
+        tlds: tlds.join(',')
+      },
+    headers:
+      {
+        'X-DomainsLab-Auth': getRequestSignature()
       }
-    })
+  }
+  return makeGetBaseRequest(URL, options)
 }
+
