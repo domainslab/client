@@ -2,11 +2,9 @@ import { createContext, useState } from 'react';
 import { Domain } from '../../types/domains';
 import { getNewDomainListRequest } from '../../services/api/RequestDomains';
 
-interface DomainContextProps{
-  domains: string
-}
 
-export const DomainContext = createContext<DomainContextProps | undefined>(undefined)
+// TODO type of createContext
+export const DomainContext = createContext(undefined)
 
 export const DomainProvider = ({children}) =>{
 
