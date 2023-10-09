@@ -5,11 +5,13 @@ import Search from './components/Search';
 import DomainList from './components/DomainList';
 import { ReactComponent as BgLines } from 'assets/images/bg-lines.svg';
 import { useViewportDimensions } from 'hooks/useViewportDimensions';
-import {  DomainProvider } from '../../contexts/DomainContext/DomainContextProvider';
+import { DomainContext } from '../../contexts/DomainContext/DomainContextProvider';
+import { useContext } from 'react';
+import Loader from 'components/Loader/Loader';
 
 const HomePage: React.FC = () => {
-  //const { isLoading, domains, query } = useSearch();
   const [width] = useViewportDimensions();
+  const {isLoading, domains} = useContext(DomainContext)
 
 
   return (
@@ -23,12 +25,17 @@ const HomePage: React.FC = () => {
       <Header active="" />
       <div className="min-h-[calc(100vh-162px)] max-w-[1000px] mt-[20px] mb-0 mx-auto flex flex-col gap-[70px] max-lg:px-[40px] max-sm:px-[20px] max-sm:gap-[30px]">
         <Heading />
-        <DomainProvider>
         <Search />
         <div className="flex flex-col gap-[20px]">
-          <DomainList />
+            {
+              isLoading && domains == [] ? (<div className='flex flex-col items-center mt-[30px]'><Loader /></div>) : (
+                <>
+                  {domains.length > 0 && (<DomainList />)}
+                  {isLoading && (<div className='flex flex-col items-center mt-[30px]'><Loader /></div>)}
+                </>)
+            }
         </div>
-        </DomainProvider>
+
       </div>
       <Footer />
     </div>
