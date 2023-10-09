@@ -1,28 +1,23 @@
 import { createContext, useState } from 'react';
 import { Domain } from '../../types/domains';
-import { getNewDomainListRequest } from '../../services/api/RequestDomains';
+import { getDomains } from '../../services/api/GetDomains';
+import { DomainContextType } from '../../types/DomainContextType';
 
-
-// TODO type of createContext
-export const DomainContext = createContext(undefined)
+export const DomainContext = createContext<DomainContextType>([])
 
 export const DomainProvider = ({children}) =>{
 
-
-
-  const [domains, setDomains] = useState<Domain[] | null>([])
-  const [isLoading, setLoading]=useState<boolean>(false)
+  const [domains, setDomains] = useState<Domain[]>([])
+  const [isLoading, setLoading] = useState<boolean>(false)
   const [lastPrompt, setLastPrompt] = useState<string>('')
-  const [lastTlds, setLastTlds]=useState<string[]>([])
+  const [lastTlds, setLastTlds] = useState<string[]>([])
 
   const addMoreDomains = () =>{
-    return getNewDomainListRequest(lastPrompt, lastTlds)
-      .then(res=>setDomains(addDomainsToExisting(res.data.domains)))
+    return getDomains(lastPrompt, lastTlds)
+      .then(res=>setDomains(prevState => [...prevState, ...res.data.domains]))
       .catch(console.error)
   }
-  const  addDomainsToExisting = (newDomains: Domain[]) :Domain[]=>{
-    return domains?.concat(newDomains)
-  }
+
 
   return(
     <DomainContext.Provider value={{domains, setDomains, isLoading, setLoading, lastPrompt, setLastPrompt ,lastTlds, setLastTlds, addMoreDomains }}>
