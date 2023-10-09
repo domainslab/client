@@ -7,7 +7,7 @@ import ChipsSelect from 'components/ChipsSelect';
 import Card from 'components/Card/Card';
 import { usePlaceholderTypingEffect } from 'hooks/usePlaceholderTypingEffect';
 import { useViewportDimensions } from 'hooks/useViewportDimensions';
-import { getNewDomainListRequest } from 'services/api/RequestDomains';
+import { getDomains } from 'services/api/GetDomains';
 import { DomainContext } from 'contexts/DomainContext/DomainContextProvider';
 
 const DEFAULT_TLDS = [
@@ -78,7 +78,7 @@ const Search: React.FC = () => {
     setLoading(true)
     setLastPrompt(inputValue)
     setLastTlds(selectedTLDs)
-    getNewDomainListRequest( inputValue, selectedTLDs )
+    getDomains( inputValue, selectedTLDs )
       .then(res => setDomains(res.data.domains))
       .catch(console.error)
       .finally(()=>{
