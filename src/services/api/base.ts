@@ -1,11 +1,11 @@
 import axios, { AxiosResponse } from 'axios';
 import { getRequestSignature } from '../../utils/getRequestSignature';
 
-const BASE_URL = 'https://api.domainslab.ai/v1/';
+const BASE_URL = 'http://localhost:3000/v1/';
 
-export const get = (featureURL, options: {params}) : Promise<AxiosResponse> => {
+export const get = <T>(featureURL, options: {params}) : Promise<AxiosResponse> => {
   return axios
-    .get(BASE_URL + featureURL,
+    .get<T>(BASE_URL + featureURL,
       {
         params: options.params,
         headers:

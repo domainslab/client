@@ -1,4 +1,5 @@
 import { get } from './base';
+import { AxiosResponse } from 'axios';
 
 export function getDomainStatus(title){
   const options = {
@@ -7,5 +8,5 @@ export function getDomainStatus(title){
         domain: title
       }
   }
-  return get('domain_status', options)
+  return get<AxiosResponse<boolean>>('domain_status', options)
 }

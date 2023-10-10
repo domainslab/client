@@ -1,4 +1,6 @@
 import { get } from './base';
+import { AxiosResponse } from 'axios';
+import { Domain } from '../../types/domains';
 
 export function getDomains(prompt,tlds){
   const options = {
@@ -8,6 +10,6 @@ export function getDomains(prompt,tlds){
         tlds: tlds.join(',')
       }
   }
-  return get('domains', options)
+  return get<AxiosResponse<Domain[]>>('domains', options)
 }
 
