@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react';
 import DomainCard from './DomainCard';
 import { getDomainStatus } from 'services/api/GetDomainStatus';
 
-
-
 type DomainCardContainerProps = {
   title: string;
 };

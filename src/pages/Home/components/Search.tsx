@@ -8,7 +8,8 @@ import Card from 'components/Card/Card';
 import { usePlaceholderTypingEffect } from 'hooks/usePlaceholderTypingEffect';
 import { useViewportDimensions } from 'hooks/useViewportDimensions';
 import { getDomains } from 'services/api/GetDomains';
-import { DomainContext } from 'contexts/DomainContext/DomainContext';
+import { DomainContext } from 'contexts/DomainContext/DomainContext.ts';
+import { DomainContextType } from 'contexts/DomainContext/DomainContextType.ts';
 
 const DEFAULT_TLDS = [
   '.com',
@@ -44,16 +45,15 @@ const PLACEHOLDERS = [
 
 const generateButtonClassNames = 'flex gap-[10px] justify-center items-center';
 
-
-
 const Search: React.FC = () => {
   const [selectedTLDs, setSelectedTLDs] = useState<string[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [inputError, setInputError] = useState(false);
 
-  const { setDomains, setLoading, setLastPrompt, setLastTlds } = useContext(DomainContext)
+  const { setDomains, setLoading, setLastPrompt, setLastTlds } =
+    useContext<DomainContextType>(DomainContext);
 
-  const inputRef = useRef<HTMLInputElement | null>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const [windowWidth] = useViewportDimensions();
 
@@ -75,14 +75,16 @@ const Search: React.FC = () => {
       setInputError(true);
       return;
     }
-    setLoading(true)
-    setLastPrompt(inputValue)
-    setLastTlds(selectedTLDs)
-    getDomains( inputValue, selectedTLDs )
+    setDomains([]);
+    setLoading(true);
+    setLastPrompt(inputValue);
+    setLastTlds(selectedTLDs);
+    getDomains(inputValue, selectedTLDs)
       .then(res => setDomains(res.data.domains))
       .catch(console.error)
-      .finally(()=>{
-        setLoading(false)})
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   const onChipsSelectChange = (items: string[]) => {

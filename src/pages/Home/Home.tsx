@@ -5,14 +5,15 @@ import Search from './components/Search';
 import DomainList from './components/DomainList';
 import { ReactComponent as BgLines } from 'assets/images/bg-lines.svg';
 import { useViewportDimensions } from 'hooks/useViewportDimensions';
-import { DomainContext } from 'contexts/DomainContext/DomainContext';
+import { DomainContext } from 'contexts/DomainContext/DomainContext.ts';
 import { useContext } from 'react';
 import Loader from 'components/Loader/Loader';
+import { DomainContextType } from 'contexts/DomainContext/DomainContextType.ts';
+import Button from '../../components/Button';
 
 const HomePage: React.FC = () => {
   const [width] = useViewportDimensions();
-  const {isLoading, domains} = useContext(DomainContext)
-
+  const { isLoading, domains, loadMoreDomains } = useContext<DomainContextType>(DomainContext);
 
   return (
     <div>
@@ -27,15 +28,25 @@ const HomePage: React.FC = () => {
         <Heading />
         <Search />
         <div className="flex flex-col gap-[20px]">
-            {
-              isLoading && domains == [] ? (<div className='flex flex-col items-center mt-[30px]'><Loader /></div>) : (
-                <>
-                  {domains.length > 0 && (<DomainList />)}
-                  {isLoading && (<div className='flex flex-col items-center mt-[30px]'><Loader /></div>)}
-                </>)
-            }
+          {isLoading && domains.length === 0 ? (
+            <div className="flex flex-col items-center mt-[30px]">
+              <Loader />
+            </div>
+          ) : (
+            <>
+              {domains.length > 0 && <DomainList />}
+              {isLoading && domains.length > 0 ? (
+                <div className="flex flex-col items-center mt-[30px]">
+                  <Loader />
+                </div>
+              ) : !isLoading && domains.length > 0 ? (
+                <div className="flex flex-col gap-[20px] mx-auto">
+                  <Button onClick={loadMoreDomains}>Load More...</Button>
+                </div>
+              ) : null}
+            </>
+          )}
         </div>
-
       </div>
       <Footer />
     </div>
