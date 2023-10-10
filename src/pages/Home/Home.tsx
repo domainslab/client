@@ -5,7 +5,7 @@ import Search from './components/Search';
 import DomainList from './components/DomainList';
 import { ReactComponent as BgLines } from 'assets/images/bg-lines.svg';
 import { useViewportDimensions } from 'hooks/useViewportDimensions';
-import { DomainContext } from '../../contexts/DomainContext/DomainContextProvider';
+import { DomainContext } from 'contexts/DomainContext/DomainContext';
 import { useContext } from 'react';
 import Loader from 'components/Loader/Loader';
 

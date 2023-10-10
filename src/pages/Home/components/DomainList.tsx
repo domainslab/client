@@ -1,7 +1,7 @@
 import DomainCard from 'components/DomainCard';
 import { useContext } from 'react';
 import Button from '../../../components/Button/Button';
-import { DomainContext } from '../../../contexts/DomainContext/DomainContextProvider';
+import { DomainContext } from 'contexts/DomainContext/DomainContext';
 
 
 
@@ -32,7 +32,7 @@ const DomainList: React.FC = () => {
             </ul>
             <div className="flex flex-col gap-[20px] mx-auto">
               { !isLoading && (
-                <Button {...{ onClick : onButtonClick  }}>Load More...</Button>)
+                <Button onClick={onButtonClick}>Load More...</Button>)
               }
             </div>
           </div>

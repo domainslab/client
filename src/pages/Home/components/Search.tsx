@@ -8,7 +8,7 @@ import Card from 'components/Card/Card';
 import { usePlaceholderTypingEffect } from 'hooks/usePlaceholderTypingEffect';
 import { useViewportDimensions } from 'hooks/useViewportDimensions';
 import { getDomains } from 'services/api/GetDomains';
-import { DomainContext } from 'contexts/DomainContext/DomainContextProvider';
+import { DomainContext } from 'contexts/DomainContext/DomainContext';
 
 const DEFAULT_TLDS = [
   '.com',
