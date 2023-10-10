@@ -1,7 +1,6 @@
-import { createContext} from 'react';
-import { DomainContextType } from '../../types/DomainContextType';
+import { createContext } from 'react';
+import { DomainContextType } from 'types/DomainContextType';
 import { AxiosResponse } from 'axios';
-
 
 
 export const DomainContext = createContext<DomainContextType>({

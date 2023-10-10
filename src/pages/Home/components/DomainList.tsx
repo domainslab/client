@@ -1,8 +1,7 @@
 import DomainCard from 'components/DomainCard';
 import { useContext } from 'react';
-import Button from '../../../components/Button/Button';
+import Button from 'components/Button/Button';
 import { DomainContext } from 'contexts/DomainContext/DomainContext';
-
 
 
 const DomainList: React.FC = () => {

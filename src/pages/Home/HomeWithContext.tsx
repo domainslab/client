@@ -1,8 +1,8 @@
-import { DomainContext} from 'contexts/DomainContext/DomainContext';
+import { DomainContext } from 'contexts/DomainContext/DomainContext';
 import Home from './Home';
 import { useState } from 'react';
-import { Domain } from '../../types/domains';
-import { getDomains } from '../../services/api/GetDomains';
+import { Domain } from 'types/domains';
+import { getDomains } from 'services/api/GetDomains';
 
 const HomeWithContext: React.FC = () => {
 
@@ -23,4 +23,3 @@ const HomeWithContext: React.FC = () => {
       </DomainContext.Provider>)
 }
 export default HomeWithContext
-
