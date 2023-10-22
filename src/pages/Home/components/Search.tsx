@@ -2,11 +2,14 @@ import { ReactComponent as MagicIcon } from 'assets/icons/magic.svg';
 import Input from 'components/Input';
 import Button from 'components/Button';
 import { isTouchDevice } from 'utils/isTouchDevice';
-import { useMemo, useRef, useState } from 'react';
+import { useContext, useMemo, useRef, useState } from 'react';
 import ChipsSelect from 'components/ChipsSelect';
 import Card from 'components/Card/Card';
 import { usePlaceholderTypingEffect } from 'hooks/usePlaceholderTypingEffect';
 import { useViewportDimensions } from 'hooks/useViewportDimensions';
+import { getDomains } from 'services/api/GetDomains';
+import { DomainContext } from 'contexts/DomainContext/DomainContext.ts';
+import { DomainContextType } from 'contexts/DomainContext/DomainContextType.ts';
 
 const DEFAULT_TLDS = [
   '.com',
@@ -42,19 +45,15 @@ const PLACEHOLDERS = [
 
 const generateButtonClassNames = 'flex gap-[10px] justify-center items-center';
 
-type SearchProps = {
-  onSearch: (term: string, { tlds }: { tlds: string[] }) => void;
-  isLoading: boolean;
-};
-
-const Search: React.FC<SearchProps> = ({ onSearch }) => {
+const Search: React.FC = () => {
   const [selectedTLDs, setSelectedTLDs] = useState<string[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [inputError, setInputError] = useState(false);
 
-  // TODO: FIXME later
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const inputRef = useRef<any>(null);
+  const { setDomains, setLoading, setLastPrompt, setLastTlds } =
+    useContext<DomainContextType>(DomainContext);
+
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const [windowWidth] = useViewportDimensions();
 
@@ -76,8 +75,16 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
       setInputError(true);
       return;
     }
-
-    onSearch(inputRef.current.value, { tlds: selectedTLDs });
+    setDomains([]);
+    setLoading(true);
+    setLastPrompt(inputValue);
+    setLastTlds(selectedTLDs);
+    getDomains(inputValue, selectedTLDs)
+      .then(res => setDomains(res.data.domains))
+      .catch(console.error)
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   const onChipsSelectChange = (items: string[]) => {

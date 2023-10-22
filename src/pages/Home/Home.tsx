@@ -3,14 +3,17 @@ import Footer from 'pages/components/Footer';
 import Heading from './components/Heading';
 import Search from './components/Search';
 import DomainList from './components/DomainList';
-import useSearch from './components/useSearch';
-import Loader from 'components/Loader';
 import { ReactComponent as BgLines } from 'assets/images/bg-lines.svg';
 import { useViewportDimensions } from 'hooks/useViewportDimensions';
+import { DomainContext } from 'contexts/DomainContext/DomainContext.ts';
+import { useContext } from 'react';
+import Loader from 'components/Loader/Loader';
+import { DomainContextType } from 'contexts/DomainContext/DomainContextType.ts';
+import Button from '../../components/Button';
 
 const HomePage: React.FC = () => {
-  const { isLoading, domains, query } = useSearch();
   const [width] = useViewportDimensions();
+  const { isLoading, domains, loadMoreDomains } = useContext<DomainContextType>(DomainContext);
 
   return (
     <div>
@@ -23,23 +26,26 @@ const HomePage: React.FC = () => {
       <Header active="" />
       <div className="min-h-[calc(100vh-162px)] max-w-[1000px] mt-[20px] mb-0 mx-auto flex flex-col gap-[70px] max-lg:px-[40px] max-sm:px-[20px] max-sm:gap-[30px]">
         <Heading />
-        <Search
-          onSearch={query}
-          isLoading={isLoading}
-        />
+        <Search />
         <div className="flex flex-col gap-[20px]">
-          {isLoading ? (
+          {isLoading && domains.length === 0 ? (
             <div className="flex flex-col items-center mt-[30px]">
               <Loader />
             </div>
-          ) : domains && domains.length > 0 ? (
+          ) : (
             <>
-              <h3 className="font-bold text-[1.625rem]">
-                Take a look at what we've generated for you
-              </h3>
-              <DomainList domains={domains} />
+              {domains.length > 0 && <DomainList />}
+              {isLoading && domains.length > 0 ? (
+                <div className="flex flex-col items-center mt-[30px]">
+                  <Loader />
+                </div>
+              ) : !isLoading && domains.length > 0 ? (
+                <div className="flex flex-col gap-[20px] mx-auto">
+                  <Button onClick={loadMoreDomains}>Load More...</Button>
+                </div>
+              ) : null}
             </>
-          ) : null}
+          )}
         </div>
       </div>
       <Footer />
