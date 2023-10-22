@@ -1,11 +1,12 @@
 import { get } from './base';
-import { AxiosResponse } from 'axios';
 
-export function getDomainStatus(title: string): Promise<AxiosResponse<boolean>> {
-  const options = {
+type GetDomainStatusResponse = {
+  isAvailable: boolean;
+};
+
+export const getDomainStatus = (title: string) =>
+  get<GetDomainStatusResponse>('domain_status', {
     params: {
       domain: title,
     },
-  };
-  return get<boolean>('domain_status', options);
-}
+  });

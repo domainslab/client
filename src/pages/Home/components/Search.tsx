@@ -80,7 +80,10 @@ const Search: React.FC = () => {
     setLastPrompt(inputValue);
     setLastTlds(selectedTLDs);
     getDomains(inputValue, selectedTLDs)
-      .then(res => setDomains(res.data.domains))
+      .then(res => {
+        res.data;
+        setDomains(res.data.domains);
+      })
       .catch(console.error)
       .finally(() => {
         setLoading(false);
